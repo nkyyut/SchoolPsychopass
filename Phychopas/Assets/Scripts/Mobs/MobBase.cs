@@ -7,6 +7,7 @@ using System;
 
 public class MobBase : MonoBehaviour {
 
+    [SerializeField] private GameController GameCtrler = null;
      private bool alivingFlg = true;                         // このキャラが生存しているかどうか
     private enum Dir { Front, Rear, Left, Right };          // 前後左右の情報
     [SerializeField] private Sprite[] dirs = new Sprite[4]; // 前後左右のスプライト画像
@@ -16,6 +17,10 @@ public class MobBase : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        if(GameCtrler)
+        {   //自身を管理に含める
+            GameCtrler.AddMob(this);
+        }
         // 自身の画像の名前を出力
         foreach (Sprite s in dirs) {
             Debug.Log(s.name);
