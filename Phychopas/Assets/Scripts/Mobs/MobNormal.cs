@@ -13,4 +13,9 @@ public class MobNormal : MobBase {
 	void Update () {
 		
 	}
+	
+	// デフォルトの移動メソッド
+	void Mode() {
+		
+	}
 }
