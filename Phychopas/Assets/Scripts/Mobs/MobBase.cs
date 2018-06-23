@@ -7,7 +7,7 @@ using System;
 
 public class MobBase : MonoBehaviour {
 
-    // private bool isAlive = true;                         // このキャラが生存しているかどうか
+     private bool alivingFlg = true;                         // このキャラが生存しているかどうか
     private enum Dir { Front, Rear, Left, Right };          // 前後左右の情報
     [SerializeField] private Sprite[] dirs = new Sprite[4]; // 前後左右のスプライト画像
     [SerializeField] private Dir nowDir = Dir.Front;        // 現在向いている方向
@@ -64,6 +64,17 @@ public class MobBase : MonoBehaviour {
      * このモブを消すだけの処理
      */
     public void Killed() {
+        alivingFlg = false;
         Destroy(this);
+    }
+
+    /***
+     * モブが生きていたらtrueを返す。
+     * 逆に死んで(ひざが切られて)いたらfalseを返す。
+     * (勝手に追加しました、さいとう)
+     */
+     public bool IsAliving() 
+     {
+        return alivingFlg;
     }
 }
