@@ -132,7 +132,7 @@ public class GameController : MonoBehaviour {
                 continue;
             }
             //モブのキル判定
-            if(mobs.KillCheck(clickPos, killingMob))
+            if(mobs.KillCheck(clickPos, killingMob),GetPsychoPos())
             {   //殺すの失敗
                 GameOver();
                 return false;
@@ -257,7 +257,7 @@ public class GameController : MonoBehaviour {
     }
     //サイコパスの座標を取得する
     //詳細 : エラーが発生したら(0,0)座標を返す
-    public Vector3 GetPsychoPos()
+    public Vector2 GetPsychoPos()
     {
         if(ManagingPsychopath)
         {   //err

@@ -768,9 +768,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 19984f7d18fb6f54aa2d0f5f9b24d866, type: 3}
   - {fileID: 21300000, guid: 503ab8c7b589eef4bb196697915ef6b5, type: 3}
   WorkingAnime:
-  - {fileID: 21300000, guid: 01f5e4af8f11e7e4084e174432fb9772, type: 3}
-  - {fileID: 21300000, guid: c7d601544478d7e4f98bbc656dfa16e8, type: 3}
-  - {fileID: 21300000, guid: 89ddde1c36074db458bd7ba2ebed04cd, type: 3}
+  - {fileID: 21300000, guid: 28938be2a07344c4ead05ebbc319fbda, type: 3}
+  - {fileID: 21300000, guid: eb1b6e3384b42eb43ae9ebdf2570acb0, type: 3}
+  - {fileID: 21300000, guid: 765d63e852878d045afe9ef24dcf3c02, type: 3}
   KillingAnimes:
   - {fileID: 21300000, guid: 95b077fa664d2e2499e617e48ceb5ad1, type: 3}
   - {fileID: 21300000, guid: 905f54e425cabb245b3455a225b7bfa0, type: 3}
