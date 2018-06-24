@@ -67,14 +67,16 @@ public class MobNormal : MobBase {
     }
 
     void Update() {
-        base.Update();
-        if (changeDirTimer > changeDirTiming) {
-            // キャラの方向を変える
-            ChangeDirection();
-            changeDirTimer = 0;
-        }
-        changeDirTimer += Time.deltaTime;
-        if (!base.isPushed) Move();
+        if (base.alivingFlg) {
+            if (changeDirTimer > changeDirTiming) {
+                // キャラの方向を変える
+                ChangeDirection();
+                changeDirTimer = 0;
+            }
+            changeDirTimer += Time.deltaTime;
+            if (!base.isPushed) Move();
+        } else this.gameObject.GetComponent<SpriteRenderer>().sprite = base.deadImage;
+
     }
 
     /***
