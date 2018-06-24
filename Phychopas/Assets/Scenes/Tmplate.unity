@@ -756,31 +756,31 @@ MonoBehaviour:
   GameCtrler: {fileID: 165392241}
   MoveSpeed: 20
   MoveSpeedForMedic: 1
-  DefaultSprite: {fileID: 21300000, guid: 274199858090b4451941b9d90201573b, type: 3}
-  KillRunning: {fileID: 21300000, guid: fe8943e2e87038141b7650f01e72cf23, type: 3}
+  DefaultSprite: {fileID: 21300000, guid: 9a027fddf5b332b4d9510d97391e5684, type: 3}
+  KillRunning: {fileID: 21300000, guid: 2a0dc87cd5609754b8be93424bbc9c81, type: 3}
   FirstTextAnime:
-  - {fileID: 21300000, guid: 32f9b983dd2c9446bba7afc3b51ee7ae, type: 3}
-  - {fileID: 21300000, guid: c1a034700266a4ee792654d7ccbd2924, type: 3}
-  - {fileID: 21300000, guid: 5321c0e53ad23482c8776b11ccdf520e, type: 3}
-  - {fileID: 21300000, guid: f16a560d811b74d8689b5442b333ac40, type: 3}
-  - {fileID: 21300000, guid: e91f2da28bd0c4be48cabfba468ca6de, type: 3}
-  - {fileID: 21300000, guid: 41dbbd4564e7549eab0065c83d0ffcdc, type: 3}
-  - {fileID: 21300000, guid: a1b06f9ad54ce44f5ae3bd4c9d777656, type: 3}
-  - {fileID: 21300000, guid: 52053680c6b644f31bb68afb55b58a74, type: 3}
+  - {fileID: 21300000, guid: bb32d7549bd12d04db56d8c876a0c9b4, type: 3}
+  - {fileID: 21300000, guid: f44c5b728730e7f4aba2bdd5a7a18ddf, type: 3}
+  - {fileID: 21300000, guid: 165ac74c0ddcf90479ed3682b49a5ec4, type: 3}
+  - {fileID: 21300000, guid: 5909e30aed626ee4cb8f76835030a8b0, type: 3}
+  - {fileID: 21300000, guid: da2cb584f63b6b5439fd1c57d3ef216b, type: 3}
+  - {fileID: 21300000, guid: a2673976661a7ee4a858514ed0406518, type: 3}
+  - {fileID: 21300000, guid: 19984f7d18fb6f54aa2d0f5f9b24d866, type: 3}
+  - {fileID: 21300000, guid: 503ab8c7b589eef4bb196697915ef6b5, type: 3}
   WorkingAnime:
-  - {fileID: 21300000, guid: 7fca1cdde644d3f47b51457b5fa037b5, type: 3}
-  - {fileID: 21300000, guid: 4e6566ecd5eb86f4696b3f21b719b18b, type: 3}
-  - {fileID: 21300000, guid: bc7124dbb26792d43be96c755edc723c, type: 3}
+  - {fileID: 21300000, guid: 01f5e4af8f11e7e4084e174432fb9772, type: 3}
+  - {fileID: 21300000, guid: c7d601544478d7e4f98bbc656dfa16e8, type: 3}
+  - {fileID: 21300000, guid: 89ddde1c36074db458bd7ba2ebed04cd, type: 3}
   KillingAnimes:
-  - {fileID: 21300000, guid: 28d7e6ae8515b0343ab75bfd61a4f541, type: 3}
-  - {fileID: 21300000, guid: 207e7103cc8cee043aac6d4f82184706, type: 3}
-  - {fileID: 21300000, guid: 66dfd3f3bf782da41afab583ee6a9cab, type: 3}
-  - {fileID: 21300000, guid: ac6f7a46e7b547943aa4e5930073f520, type: 3}
-  - {fileID: 21300000, guid: 718265e3104cf7643aad224bfcc7957b, type: 3}
-  - {fileID: 21300000, guid: b4d0568a1f2e6fa4187d5db5688d42a7, type: 3}
+  - {fileID: 21300000, guid: 95b077fa664d2e2499e617e48ceb5ad1, type: 3}
+  - {fileID: 21300000, guid: 905f54e425cabb245b3455a225b7bfa0, type: 3}
+  - {fileID: 21300000, guid: e40f2c7a5ca7ade4ab9d35d30ff6a6f0, type: 3}
+  - {fileID: 21300000, guid: eaf1abf4b8b15b54083ae5aa6476fda8, type: 3}
+  - {fileID: 21300000, guid: c8c2dfd669bd0764cae53d6cd90fd3ff, type: 3}
+  - {fileID: 21300000, guid: c2527a9f17036f743a4c2898db099a40, type: 3}
   MedicAnimes:
-  - {fileID: 21300000, guid: f562f590e22844a3995f7b6f58aa19f6, type: 3}
-  - {fileID: 21300000, guid: 00f1ca8d0dc0540fc9697283a68522fb, type: 3}
+  - {fileID: 21300000, guid: 623d8ad886454a2459921c9b9f4a415b, type: 3}
+  - {fileID: 21300000, guid: 3af4a46cea64dd948800cbbbf77982d4, type: 3}
 --- !u!212 &237803226
 SpriteRenderer:
   m_ObjectHideFlags: 0

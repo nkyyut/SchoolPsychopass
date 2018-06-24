@@ -255,4 +255,14 @@ public class GameController : MonoBehaviour {
     {
         ctrlState = ControlState.NormalControl;
     }
+    //サイコパスの座標を取得する
+    //詳細 : エラーが発生したら(0,0)座標を返す
+    public Vector3 GetPsychoPos()
+    {
+        if(ManagingPsychopath)
+        {   //err
+            return new Vector2(0,0);
+        }
+        return ManagingPsychopath.GetPos();
+    }
 }

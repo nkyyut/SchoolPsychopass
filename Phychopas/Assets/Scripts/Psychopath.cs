@@ -103,8 +103,7 @@ public class Psychopath : MonoBehaviour {
                 mySprite.sprite = KillRunning;
                 this.transform.position = Vector2.Lerp(this.transform.position, targetPos, Time.deltaTime * MoveSpeed);
 
-                if ((int)(transform.position.x) == (int)(targetPos.x)
-                    && (int)(transform.position.y) == (int)(targetPos.y))
+                if (Vector2.Distance(transform.position,targetPos) < 1.8f)
                 {
                     animeTimer = 0.0f;
                     animeFrame = 0;
@@ -118,8 +117,7 @@ public class Psychopath : MonoBehaviour {
 
                 this.transform.position = Vector2.Lerp(this.transform.position, targetPos, Time.deltaTime * MoveSpeedForMedic);
 
-                if ((int)(transform.position.x) == (int)(targetPos.x)
-                    && (int)(transform.position.y) == (int)(targetPos.y))
+                if (Vector2.Distance(transform.position, targetPos) < 2.5f)
                 {
                     animeTimer = 0.0f;
                     animeFrame = 0;
@@ -134,8 +132,7 @@ public class Psychopath : MonoBehaviour {
 
                 this.transform.position = Vector2.Lerp(this.transform.position, defaultPos, Time.deltaTime * MoveSpeedForMedic);
 
-                if ((int)(transform.position.x) == (int)(defaultPos.x)
-                    && (int)(transform.position.y) == (int)(defaultPos.y))
+                if (Vector2.Distance(transform.position, defaultPos) < 0.3f)
                 {
                     animeTimer = 0.0f;
                     animeFrame = 0;
@@ -204,6 +201,11 @@ public class Psychopath : MonoBehaviour {
             FullScreenCol.enabled = false;
             GameCtrler.ClearControl();
         }
+    }
+    //サイコパスの座標を取得する
+    public Vector3 GetPos()
+    {
+        return this.transform.position;
     }
     
 }
