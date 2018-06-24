@@ -26,6 +26,7 @@ public class Psychopath : MonoBehaviour {
     private Vector2 targetPos;
     private SpriteRenderer mySprite;
     private bool defaultFlipX;
+    private MobBase KillingMob = null;
     [SerializeField] private bool IsFirstTextPlay = false;
     [SerializeField] private SpriteRenderer FullScreenSprite = null;
     [SerializeField] private GameController GameCtrler;
@@ -77,6 +78,10 @@ public class Psychopath : MonoBehaviour {
                         animeFrame = 0;
                         animeState = Animation.TargetToMoveForMedic;
                         FullScreenSprite.sprite = null;
+                        if (KillingMob)
+                        {
+                            KillingMob.Killed();
+                        }
                     }
                     else
                     {   //コマ切り替え
@@ -115,7 +120,7 @@ public class Psychopath : MonoBehaviour {
                 {
                     animeTimer = 0.0f;
                     animeFrame = 0;
-                    animeState = Animation.TargetToMove;
+                    animeState = Animation.BackToDefalt;
                 }
                 break;
             case Animation.GiveMedic:
@@ -161,11 +166,12 @@ public class Psychopath : MonoBehaviour {
         }
     }
     //モブを殺すアニメーションの再生を行う
-    void MobKilling(Vector2 killPos)
+    public void MobKilling(Vector2 killPos , MobBase killMob)
     {
         animeTimer = 0.0f;
         animeState = Animation.TargetToMove;
         targetPos = killPos;
+        KillingMob = killMob;
     }
     //画面のクリックを受け取る
     public void ClearClickWait()

@@ -18,7 +18,11 @@ public class MobNormal : MobBase {
     private float height;                            // 画像の縦幅
     private bool isMoveLeft;                         // 左に移動できるか
     private bool isMoveRight;                        // 右に移動できるか
-
+    private bool deleteObjectFlg;
+    private float alpha;
+    private SpriteRenderer rend;
+    public Sprite deadImage;
+    private Color color;
 
     void Start() {
         // ランダムインスタンスを生成
@@ -36,6 +40,7 @@ public class MobNormal : MobBase {
         // コライダーの位置をセット
         wallLeft.transform.position = new Vector3(min.x, 0, 0);
         wallRight.transform.position = new Vector3(max.x, 0, 0);
+        rend = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerStay(Collider other) {
@@ -50,16 +55,28 @@ public class MobNormal : MobBase {
     }
 
     void Update() {
-        if (changeDirTimer > changeDirTiming) {
-            // キャラの方向を変える
-            ChangeDirection();
-            changeDirTimer = 0;
+        if (base.alivingFlg) {
+            if (changeDirTimer > changeDirTiming) {
+                // キャラの方向を変える
+                ChangeDirection();
+                changeDirTimer = 0;
+            }
+            changeDirTimer += Time.deltaTime;
+            if (!base.isPushed) Move();
+        } else if (deleteObjectFlg) {
+            alpha = alpha + Time.deltaTime * 0.5f;
+            rend.material.color = new Color(color.r, color.g, color.b, alpha);
+            if (alpha > 1) Destroy(this.gameObject);
+        } else {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = deadImage;
+            color = this.gameObject.GetComponent<SpriteRenderer>().material.color;
+            Invoke("deleteObject", 3);
         }
-        changeDirTimer += Time.deltaTime;
-        // 両端にいる時は移動できないようにする
-        //if (transform.position.x - width / 2.0f < min.x) isMoveLeft = false;
-        //if (transform.position.x + width / 2.0f > max.x) isMoveRight = false;
-        Move();
+
+    }
+
+    void deleteObject() {
+        deleteObjectFlg = true;
     }
 
     /***

@@ -15,11 +15,17 @@ public class MobBase : MonoBehaviour {
     public float changeDirTiming;                   // 画像を変えるタイミング
     public float changeDirTimer;                    // 画像を変えるタイマー
     [SerializeField] private GameController GameCtrler = null;
-    private bool alivingFlg = true;                         // このキャラが生存しているかどうか
+    public bool alivingFlg = true;                         // このキャラが生存しているかどうか
+    public bool isPushed;
 
+    //public MobBase () {
+    //    if (GameCtrler) {   //自身を管理に含める
+    //        GameCtrler.AddMob(this);
+    //    }
+    //}
 
     // Use this for initialization
-    void Start() {
+    public  void Start() {
         if(GameCtrler)
         {   //自身を管理に含める
             GameCtrler.AddMob(this);
@@ -74,7 +80,7 @@ public class MobBase : MonoBehaviour {
         return alivingFlg;
     }
 
-    void ReceiveItemEvent(GameController.ItemEvent Event, ItemBase Item, Vector2 Pos) {
+    public void ReceiveItemEvent(GameController.ItemEvent Event, ItemBase Item, Vector2 Pos) {
         switch (Event) {
             case GameController.ItemEvent.Sound:
                 if (transform.position.x > Pos.x) nowDir = Dir.Left;
@@ -82,6 +88,16 @@ public class MobBase : MonoBehaviour {
                 break;
             default:
                 break;
+        }
+    }
+    //クリックされた時のイベント
+    public void ClickDown()
+    {
+        Debug.Log("Mobがクリックされた。");
+        if(GameCtrler.GetCtrlState() == GameController.ControlState.NormalControl)
+        {
+            GameCtrler.KillCheckMob(this.transform.position,this);
+            isPushed = true;
         }
     }
 }

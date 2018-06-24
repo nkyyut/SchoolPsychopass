@@ -140,7 +140,7 @@ public class GameController : MonoBehaviour {
         }
 
         //選択したモブは死ぬ
-        killingMob.Killed();
+        ManagingPsychopath.MobKilling(clickPos, killingMob);
 
         int aliveNum = GetAlivingMobs();
 
@@ -184,21 +184,21 @@ public class GameController : MonoBehaviour {
     {
         for (int i = 0; i < ManagingMobs.Length; ++i)
         {
-            if (ManagingMobs == null)
+            if (ManagingMobs[i] == null)
             {   //err
                 continue;
             }
             //アイテムイベントを渡す
-            //ManagingMobs.ReceiveItemEvent(Event, Item, Pos);
+            ManagingMobs[i].ReceiveItemEvent(Event, Item, Pos);
         }
         for (int i = 0; i < ManagingItems.Length; ++i)
         {
-            if (ManagingItems == null)
+            if (ManagingItems[i] == null)
             {   //err
                 continue;
             }
             ////アイテムイベントを渡す
-            //items.ReceiveItemEvent(Event,Item,Pos);
+            //items[i].ReceiveItemEvent(Event,Item,Pos);
         }
     }
     //概要 : アイテムの操作状態を受け取る
@@ -242,5 +242,12 @@ public class GameController : MonoBehaviour {
     public void ChangeMenuControl()
     {
         ctrlState = ControlState.MenuControl;
+    }
+    //概要 : 操作状態をクリアする
+    //引数 : なし
+    //返値 : なし
+    public void ClearControl()
+    {
+        ctrlState = ControlState.NormalControl;
     }
 }
