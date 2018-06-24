@@ -16,7 +16,7 @@ public class MobBase : MonoBehaviour {
     public float changeDirTimer;                    // 画像を変えるタイマー
     [SerializeField] private GameController GameCtrler = null;
     private bool alivingFlg = true;                         // このキャラが生存しているかどうか
-
+    public Sprite deadImage;
 
     // Use this for initialization
     void Start() {
@@ -26,6 +26,12 @@ public class MobBase : MonoBehaviour {
         }
     }
 
+
+    void Update() {
+        if ( !alivingFlg ) {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = dirs[(int)nowDir];
+        }
+    }
 
     /***
      * @param pos マウスのクリックされたポジション
