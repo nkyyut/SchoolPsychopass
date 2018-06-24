@@ -41,7 +41,7 @@ public class MobBase : MonoBehaviour {
         int phychoDir = 0;
         // サイコパスの位置を判定
         if (phychoPos.x > max.x * 0.75f) phychoDir = 1;
-        else if (phychoPos.x < min.x * 0,75f) phychoDir = 2;
+        else if (phychoPos.x < min.x * 0.75f) phychoDir = 2;
         else phychoDir = 3;
 
         // カウントを取得

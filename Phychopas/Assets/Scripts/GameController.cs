@@ -134,13 +134,8 @@ public class GameController : MonoBehaviour {
                 continue;
             }
             //モブのキル判定
-<<<<<<< HEAD
             if(mobs.KillCheck(clickPos, killingMob, GetPsychoPos()))
             {   //殺すの失敗
-=======
-            if(mobs.KillCheck(clickPos, killingMob ,GetPsychoPos()))
-                {   //殺すの失敗
->>>>>>> 291c25b5e1243454d55df13089fa23c0b28179af
                 GameOver();
                 return false;
             }
