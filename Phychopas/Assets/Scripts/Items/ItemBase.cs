@@ -14,17 +14,28 @@ public class ItemBase : MonoBehaviour
     private float timer;                            // 時間を計るタイマー
     private float lastPosX;                         // 消える直前のX座標
 
+    [SerializeField] private GameController GameCtrler = null;
+
+
     // アイテムをクリックした時！
-    public void OnClick() {
+    public void OnClick()
+    {
         // 飛んでる最中の状態に変える
         moveFlg = 1;
     }
 
-	// 初めの一回だけ呼ばれるよ！
-	void Start () {
+    // 初めの一回だけ呼ばれるよ！
+    void Start()
+    {
         startPos = new Vector2(this.transform.position.x, this.transform.position.y);
         targetPos = new Vector2(target.transform.position.x, target.transform.position.y);
-	}
+
+        if (GameCtrler)
+        {
+            GameCtrler.AddItem(this);
+        }
+
+    }
 	
 	// フレーム毎に呼ばれるよ！
 	void Update () {
