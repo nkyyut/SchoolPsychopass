@@ -200,6 +200,8 @@ public class Psychopath : MonoBehaviour {
             FullScreenSprite.sprite = null;
             FullScreenCol.enabled = false;
             GameCtrler.ClearControl();
+
+            GameCtrler.StageClearCheck();
         }
     }
     //サイコパスの座標を取得する

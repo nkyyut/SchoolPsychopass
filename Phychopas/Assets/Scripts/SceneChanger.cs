@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    public string NextSceneName;    //次のシーンを予約する
 
-    void ChangeScene(string SceneName)
+    public void ChangeNextScene()
+    {
+        SceneManager.LoadScene(NextSceneName);
+    }
+    public void ChangeScene(string SceneName)
     {
         SceneManager.LoadScene(SceneName);
     }
