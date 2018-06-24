@@ -17,6 +17,8 @@ public class MobNormal : MobBase {
     private SpriteRenderer rend;
     public Sprite deadImage;
     private Color color;
+    private Vector2 min;                             // カメラの左下の座標
+
 
     void Start() {
         // ランダムインスタンスを生成
@@ -26,6 +28,7 @@ public class MobNormal : MobBase {
         height = GetComponent<SpriteRenderer>().bounds.size.y;
         // 初期ポジションを設定
         transform.position = new Vector3(transform.position.x, min.y + height / 2);
+        min = Camera.main.ViewportToWorldPoint(Vector2.zero);
         // アニメーターを取得
         animator = GetComponent(typeof(Animator)) as Animator;
         rend = GetComponent<SpriteRenderer>();

@@ -39,27 +39,37 @@ public class MobBase : MonoBehaviour {
      */
     public bool KillCheck(Vector2 pos, MobBase mb, Vector2 phychoPos) {
         int phychoDir = 0;
-        // サイコパスの位置を判定
+        // サイコパスの位置を判定      1: right   2:left   3:rear
         if (phychoPos.x > max.x * 0.75f) phychoDir = 1;
-        else if (phychoPos.x < min.x * 0,75f) phychoDir = 2;
+        else if (phychoPos.x < min.x * 0.75f) phychoDir = 2;
         else phychoDir = 3;
 
         // カウントを取得
         int count = GameCtrler.GetAlivingMobs();
+
         // 正面なら殺せないゲームオーバー
         if (nowDir == Dir.Front) return true;
+
+
+        // 対象の敵とサイコパスの判定
+
+        // 左を向いている　かつ　敵が左向き以外　殺せないゲームオーバー
+        if (phychoDir == 1 && mb.nowDir != Dir.Left) return true;
+        // 右を向いている　かつ　敵が右向き以外　殺せないゲームオーバー
+        if (phychoDir == 2 && mb.nowDir != Dir.Right) return true;
+        // 上を向いている　かつ　敵が後向き以外　殺せないゲームオーバー
+        if (phychoDir == 3 && mb.nowDir != Dir.Rear) return true;
+
+
+        //　ぼっちじゃない
         if (count > 1) {
+            // このモブが対象のモブを見ている またはサイコパスを見ている 殺せないゲームオーバー
             // 左を向いている　かつ　自分より左にいる時　殺せないゲームオーバー
             if (nowDir == Dir.Left && this.transform.position.x > pos.x) return true;
             // 右を向いている　かつ　自分より右にいる時　殺せないゲームオーバー
             if (nowDir == Dir.Right && this.transform.position.x < pos.x) return true;
-            // 上を向いている　かつ　自分より上にいる時
 
-        } else {
-            // 左を向いている　かつ　自分より左にいる時　殺せないゲームオーバー
-           // if (pyhchoPos) return true;
         }
-
         // それ以外は殺せる！！
         return false;
     }
