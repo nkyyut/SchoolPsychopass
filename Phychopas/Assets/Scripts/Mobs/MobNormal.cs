@@ -18,6 +18,7 @@ public class MobNormal : MobBase {
     public Sprite deadImage;
     private Color color;
     private Vector2 min;                             // カメラの左下の座標
+    private Vector2 max;                             // カメラの右上の座標
 
 
     void Start() {
@@ -29,6 +30,7 @@ public class MobNormal : MobBase {
         // 初期ポジションを設定
         transform.position = new Vector3(transform.position.x, min.y + height / 2);
         min = Camera.main.ViewportToWorldPoint(Vector2.zero);
+        max = Camera.main.ViewportToWorldPoint(Vector2.one);
         // アニメーターを取得
         animator = GetComponent(typeof(Animator)) as Animator;
         rend = GetComponent<SpriteRenderer>();
