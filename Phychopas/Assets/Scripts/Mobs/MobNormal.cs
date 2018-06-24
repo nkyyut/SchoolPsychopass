@@ -74,8 +74,7 @@ public class MobNormal : MobBase {
             changeDirTimer = 0;
         }
         changeDirTimer += Time.deltaTime;
-
-        Move();
+        if (!base.isPushed) Move();
     }
 
     /***

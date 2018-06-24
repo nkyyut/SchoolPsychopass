@@ -17,6 +17,7 @@ public class MobBase : MonoBehaviour {
     [SerializeField] private GameController GameCtrler = null;
     private bool alivingFlg = true;                         // このキャラが生存しているかどうか
     public Sprite deadImage;
+    public bool isPushed;
 
     //public MobBase () {
     //    if (GameCtrler) {   //自身を管理に含める
@@ -34,6 +35,7 @@ public class MobBase : MonoBehaviour {
 
 
     public void Update() {
+        
         if ( !alivingFlg ) {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = deadImage;
         }
@@ -103,6 +105,7 @@ public class MobBase : MonoBehaviour {
         if(GameCtrler.GetCtrlState() == GameController.ControlState.NormalControl)
         {
             GameCtrler.KillCheckMob(this.transform.position,this);
+            isPushed = true;
         }
     }
 }
