@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour {
         Sound,      //音がなる
     }
 
+    public SceneChanger SceneMng;
     public MobBase[] ManagingMobs = new MobBase[256];
     public ItemBase[] ManagingItems = new ItemBase[256];
 
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
     }
     //概要 ： モブを管理に含める
     //引数 ： MobBase newMob  管理に追加する新しいモブ
@@ -147,12 +149,6 @@ public class GameController : MonoBehaviour {
         {   //err
             Debug.Log("ERROR : GameControllerにPsychopathが設定されていない。");
         }
-        int aliveNum = GetAlivingMobs();
-
-        if(aliveNum == 0)
-        {
-            StageClear();
-        }
         return true;
     }
 
@@ -226,12 +222,14 @@ public class GameController : MonoBehaviour {
     {
         //今はなにもしない
         Debug.Log("Stage Clear!");
+        SceneMng.ChangeNextScene();
     }
     //ゲームオーバーの処理
     public void GameOver()
     {
         //今はなにもしない
         Debug.Log("Game Over...");
+        SceneMng.ChangeScene("Title");
     }
 
     //概要 : 操作の状態を取得する
@@ -264,5 +262,16 @@ public class GameController : MonoBehaviour {
             return new Vector2(0,0);
         }
         return ManagingPsychopath.GetPos();
+    }
+    public void StageClearCheck()
+    {
+        int aliveNum = GetAlivingMobs();
+
+        Debug.Log("モブの残り" + aliveNum);
+
+        if (aliveNum == 0)
+        {
+            StageClear();
+        }
     }
 }
