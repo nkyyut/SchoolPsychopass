@@ -188,8 +188,8 @@ public class GameController : MonoBehaviour {
             {   //err
                 continue;
             }
-            ////アイテムイベントを渡す
-            //mobs.ReceiveItemEvent(Event,Item,Pos);
+            //アイテムイベントを渡す
+            //ManagingMobs.ReceiveItemEvent(Event, Item, Pos);
         }
         for (int i = 0; i < ManagingItems.Length; ++i)
         {
@@ -235,5 +235,12 @@ public class GameController : MonoBehaviour {
     public ControlState GetCtrlState()
     {
         return ctrlState;
+    }
+    //概要 : メニューを操作状態に変更する
+    //引数 : なし
+    //返値 : なし
+    public void ChangeMenuControl()
+    {
+        ctrlState = ControlState.MenuControl;
     }
 }
