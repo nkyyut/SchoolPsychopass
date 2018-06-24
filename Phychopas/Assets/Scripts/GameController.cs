@@ -108,7 +108,7 @@ public class GameController : MonoBehaviour {
                 continue;
             }
             //モブのキル判定
-            if(mobs.KillChack(clickPos, killingMob))
+            if(mobs.KillCheck(clickPos, killingMob))
             {   //殺すの失敗
                 GameOver();
                 return false;
