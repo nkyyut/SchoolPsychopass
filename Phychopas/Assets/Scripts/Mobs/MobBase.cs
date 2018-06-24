@@ -42,7 +42,6 @@ public class MobBase : MonoBehaviour {
         // サイコパスの位置を判定      1: right   2:left   3:rear
         if (phychoPos.x > max.x * 0.75f) phychoDir = 1;
         else if (phychoPos.x < min.x * 0.75f) phychoDir = 2;
-        else phychoDir = 3;
 
         // カウントを取得
         int count = GameCtrler.GetAlivingMobs();
