@@ -9,8 +9,6 @@ public class MobNormal : MobBase {
 
     [SerializeField] private float moveSpeed = 5f;   // モブの移動速度
     private Animator animator;                       // アニメーター
-    private Vector2 min;                             // カメラの左下の座標
-    private Vector2 max;                             // カメラの右上の座標
     private System.Random r;                         // ランダム用の変数
     private float width;                             // 画像の横幅
     private float height;                            // 画像の縦幅
@@ -23,9 +21,6 @@ public class MobNormal : MobBase {
     void Start() {
         // ランダムインスタンスを生成
         r = new System.Random();
-        // 左下と右上の座標を取得
-        min = Camera.main.ViewportToWorldPoint(Vector2.zero);
-        max = Camera.main.ViewportToWorldPoint(Vector2.one);
         // 画像の大きさを取得
         width = GetComponent<SpriteRenderer>().bounds.size.x;
         height = GetComponent<SpriteRenderer>().bounds.size.y;
