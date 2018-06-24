@@ -56,9 +56,7 @@ public class MobNormal : MobBase {
             changeDirTimer = 0;
         }
         changeDirTimer += Time.deltaTime;
-        // 両端にいる時は移動できないようにする
-        //if (transform.position.x - width / 2.0f < min.x) isMoveLeft = false;
-        //if (transform.position.x + width / 2.0f > max.x) isMoveRight = false;
+
         Move();
     }
 
