@@ -18,24 +18,10 @@ public class MobNormal : MobBase {
     private float height;                            // 画像の縦幅
     private bool isMoveLeft;                         // 左に移動できるか
     private bool isMoveRight;                        // 右に移動できるか
+    private bool deleteObjectFlg;
+    private float alpha;
+    private SpriteRenderer rend;
 
-    //public MobNormal() {
-    //    // ランダムインスタンスを生成
-    //    r = new System.Random();
-    //    // 左下と右上の座標を取得
-    //    min = Camera.main.ViewportToWorldPoint(Vector2.zero);
-    //    max = Camera.main.ViewportToWorldPoint(Vector2.one);
-    //    // 画像の大きさを取得
-    //    width = GetComponent<SpriteRenderer>().bounds.size.x;
-    //    height = GetComponent<SpriteRenderer>().bounds.size.y;
-    //    // 初期ポジションを設定
-    //    transform.position = new Vector3(transform.position.x, min.y + height / 2);
-    //    // アニメーターを取得
-    //    animator = GetComponent(typeof(Animator)) as Animator;
-    //    // コライダーの位置をセット
-    //    wallLeft.transform.position = new Vector3(min.x, 0, 0);
-    //    wallRight.transform.position = new Vector3(max.x, 0, 0);
-    //}
 
     void Start() {
         // ランダムインスタンスを生成
@@ -53,6 +39,7 @@ public class MobNormal : MobBase {
         // コライダーの位置をセット
         wallLeft.transform.position = new Vector3(min.x, 0, 0);
         wallRight.transform.position = new Vector3(max.x, 0, 0);
+        rend = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerStay(Collider other) {
@@ -75,8 +62,18 @@ public class MobNormal : MobBase {
             }
             changeDirTimer += Time.deltaTime;
             if (!base.isPushed) Move();
-        } else this.gameObject.GetComponent<SpriteRenderer>().sprite = base.deadImage;
+        } else if (deleteObjectFlg) {
+            alpha = alpha + Time.deltaTime * 0.5f;
+            rend.material.color = new Color(0f, 0f, 0f, alpha);
+            if (alpha > 1) Destroy(this.gameObject);
+        } else {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = base.deadImage;
+        }
 
+    }
+
+    void deleteObject() {
+        deleteObjectFlg = true;
     }
 
     /***
