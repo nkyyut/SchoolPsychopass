@@ -64,9 +64,11 @@ public class MobNormal : MobBase {
             changeDirTimer += Time.deltaTime;
             if (!base.isPushed) Move();
         } else if (deleteObjectFlg) {
-            alpha = alpha + Time.deltaTime * 0.5f;
-            rend.material.color = new Color(color.r, color.g, color.b, alpha);
-            if (alpha > 1) Destroy(this.gameObject);
+
+            if (rend.material.color.a > 0) {
+                alpha = rend.material.color.a - 0.5f * Time.deltaTime;
+                rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, alpha);
+            } else Destroy(this.gameObject);
         } else {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = deadImage;
             color = this.gameObject.GetComponent<SpriteRenderer>().material.color;
