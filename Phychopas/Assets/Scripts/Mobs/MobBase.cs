@@ -10,7 +10,7 @@ public class MobBase : MonoBehaviour {
 
     public enum Dir { Front = 0, Rear  = 1,
                       Left  = 2, Right = 3 };       // 前後左右の情報
-    public Sprite[] dirs = new Sprite[4];           // 前後左右のスプライト画像
+    public Sprite[] dirs = new Sprite[3];           // 前後左右のスプライト画像
     public Dir nowDir = Dir.Front;                  // 現在向いている方向
     public float changeDirTiming;                   // 画像を変えるタイミング
     public float changeDirTimer;                    // 画像を変えるタイマー
