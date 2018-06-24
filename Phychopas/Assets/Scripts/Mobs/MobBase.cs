@@ -18,8 +18,14 @@ public class MobBase : MonoBehaviour {
     private bool alivingFlg = true;                         // このキャラが生存しているかどうか
     public Sprite deadImage;
 
+    //public MobBase () {
+    //    if (GameCtrler) {   //自身を管理に含める
+    //        GameCtrler.AddMob(this);
+    //    }
+    //}
+
     // Use this for initialization
-    void Start() {
+    public  void Start() {
         if(GameCtrler)
         {   //自身を管理に含める
             GameCtrler.AddMob(this);
@@ -27,9 +33,9 @@ public class MobBase : MonoBehaviour {
     }
 
 
-    void Update() {
+    public void Update() {
         if ( !alivingFlg ) {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = dirs[(int)nowDir];
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = deadImage;
         }
     }
 
