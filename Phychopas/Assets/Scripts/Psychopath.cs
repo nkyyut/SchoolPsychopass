@@ -203,7 +203,7 @@ public class Psychopath : MonoBehaviour {
         }
     }
     //サイコパスの座標を取得する
-    public Vector3 GetPos()
+    public Vector2 GetPos()
     {
         return this.transform.position;
     }
