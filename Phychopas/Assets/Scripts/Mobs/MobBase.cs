@@ -17,8 +17,14 @@ public class MobBase : MonoBehaviour {
     [SerializeField] private GameController GameCtrler = null;
     public bool alivingFlg = true;                         // このキャラが生存しているかどうか
     public bool isPushed;
+    private Vector2 min;                             // カメラの左下の座標
+    private Vector2 max;                             // カメラの右上の座標
+
 
     public  void Start() {
+        // 左下と右上の座標を取得
+        min = Camera.main.ViewportToWorldPoint(Vector2.zero);
+        max = Camera.main.ViewportToWorldPoint(Vector2.one);
         if(GameCtrler)
         {   //自身を管理に含める
             GameCtrler.AddMob(this);
@@ -31,7 +37,13 @@ public class MobBase : MonoBehaviour {
      * @param mb  クリックされたモブキャラの親クラス
      * @return このキャラクターを殺しても良いか
      */
-    public bool KillCheck(Vector2 pos, MobBase mb, Vector2 pyhchoPos) {
+    public bool KillCheck(Vector2 pos, MobBase mb, Vector2 phychoPos) {
+        int phychoDir = 0;
+        // サイコパスの位置を判定
+        if (phychoPos.x > max.x * 0.75f) phychoDir = 1;
+        else if (phychoPos.x < min.x * 0,75f) phychoDir = 2;
+        else phychoDir = 3;
+
         // カウントを取得
         int count = GameCtrler.GetAlivingMobs();
         // 正面なら殺せないゲームオーバー
