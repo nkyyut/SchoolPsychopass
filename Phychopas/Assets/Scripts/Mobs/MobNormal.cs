@@ -117,7 +117,6 @@ public class MobNormal : MobBase {
         }
         else if (nowDir == Dir.Right) {
             animator.enabled = true;
-            //if (!isMoveLeft) isMoveLeft = true;
             if (!animator.GetBool("MobWolkOn")) animator.SetBool("MobWolkOn", true);
             transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
             if (transform.position.x > max.x) transform.Translate(Vector2.left * moveSpeed * 1.5f * Time.deltaTime);

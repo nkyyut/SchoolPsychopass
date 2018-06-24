@@ -18,7 +18,6 @@ public class MobBase : MonoBehaviour {
     public bool alivingFlg = true;                         // このキャラが生存しているかどうか
     public bool isPushed;
 
-
     public  void Start() {
         if(GameCtrler)
         {   //自身を管理に含める
@@ -32,13 +31,23 @@ public class MobBase : MonoBehaviour {
      * @param mb  クリックされたモブキャラの親クラス
      * @return このキャラクターを殺しても良いか
      */
-    public bool KillCheck(Vector2 pos, MobBase mb) {
+    public bool KillCheck(Vector2 pos, MobBase mb, Vector2 pyhchoPos) {
+        // カウントを取得
+        int count = GameCtrler.GetAlivingMobs();
         // 正面なら殺せないゲームオーバー
         if (nowDir == Dir.Front) return true;
-        // 左を向いている　かつ　自分より左にいる時　殺せないゲームオーバー
-        if (nowDir == Dir.Left  && this.transform.position.x > pos.x) return true;
-        // 右を向いている　かつ　自分より右にいる時　殺せないゲームオーバー
-        if (nowDir == Dir.Right && this.transform.position.x < pos.x) return true;
+        if (count > 1) {
+            // 左を向いている　かつ　自分より左にいる時　殺せないゲームオーバー
+            if (nowDir == Dir.Left && this.transform.position.x > pos.x) return true;
+            // 右を向いている　かつ　自分より右にいる時　殺せないゲームオーバー
+            if (nowDir == Dir.Right && this.transform.position.x < pos.x) return true;
+            // 上を向いている　かつ　自分より上にいる時
+
+        } else {
+            // 左を向いている　かつ　自分より左にいる時　殺せないゲームオーバー
+           // if (pyhchoPos) return true;
+        }
+
         // それ以外は殺せる！！
         return false;
     }
