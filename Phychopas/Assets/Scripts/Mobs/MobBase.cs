@@ -18,13 +18,7 @@ public class MobBase : MonoBehaviour {
     public bool alivingFlg = true;                         // このキャラが生存しているかどうか
     public bool isPushed;
 
-    //public MobBase () {
-    //    if (GameCtrler) {   //自身を管理に含める
-    //        GameCtrler.AddMob(this);
-    //    }
-    //}
 
-    // Use this for initialization
     public  void Start() {
         if(GameCtrler)
         {   //自身を管理に含める

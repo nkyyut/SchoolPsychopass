@@ -8,16 +8,12 @@ using System;
 public class MobNormal : MobBase {
 
     [SerializeField] private float moveSpeed = 5f;   // モブの移動速度
-    [SerializeField] private GameObject wallLeft;
-    [SerializeField] private GameObject wallRight;
     private Animator animator;                       // アニメーター
     private Vector2 min;                             // カメラの左下の座標
     private Vector2 max;                             // カメラの右上の座標
     private System.Random r;                         // ランダム用の変数
     private float width;                             // 画像の横幅
     private float height;                            // 画像の縦幅
-    private bool isMoveLeft;                         // 左に移動できるか
-    private bool isMoveRight;                        // 右に移動できるか
     private bool deleteObjectFlg;
     private float alpha;
     private SpriteRenderer rend;
@@ -37,9 +33,6 @@ public class MobNormal : MobBase {
         transform.position = new Vector3(transform.position.x, min.y + height / 2);
         // アニメーターを取得
         animator = GetComponent(typeof(Animator)) as Animator;
-        // コライダーの位置をセット
-        wallLeft.transform.position = new Vector3(min.x, 0, 0);
-        wallRight.transform.position = new Vector3(max.x, 0, 0);
         rend = GetComponent<SpriteRenderer>();
     }
 
@@ -64,7 +57,6 @@ public class MobNormal : MobBase {
             changeDirTimer += Time.deltaTime;
             if (!base.isPushed) Move();
         } else if (deleteObjectFlg) {
-
             if (rend.material.color.a > 0) {
                 alpha = rend.material.color.a - 0.5f * Time.deltaTime;
                 rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, alpha);
@@ -87,11 +79,7 @@ public class MobNormal : MobBase {
     void ChangeDirection() {
         int temp = r.Next(4);
         // 絶対に被らないようにする
-        while ((int)nowDir == temp) {
-            temp = r.Next(4);
-            if (!isMoveLeft && temp == 2) continue;
-            if (!isMoveRight && temp == 3) continue;
-        }
+        while ((int)nowDir == temp) { temp = r.Next(4); }
         // 求めたランダムからEnumへ
         nowDir = (Dir)Enum.ToObject(typeof(Dir), temp);
         // 向きを変更
@@ -123,17 +111,16 @@ public class MobNormal : MobBase {
     void Move() {
         if (nowDir == Dir.Left) {
             animator.enabled = true;
-            //if (!isMoveRight) isMoveRight = true;
             if (!animator.GetBool("MobWolkOn")) animator.SetBool("MobWolkOn", true);
             transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+            if (transform.position.x < min.x) transform.Translate(Vector2.right * moveSpeed * 1.5f * Time.deltaTime);
         }
         else if (nowDir == Dir.Right) {
             animator.enabled = true;
             //if (!isMoveLeft) isMoveLeft = true;
-            if (!animator.GetBool("MobWolkOn")) {
-                animator.SetBool("MobWolkOn", true);
-            }
+            if (!animator.GetBool("MobWolkOn")) animator.SetBool("MobWolkOn", true);
             transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+            if (transform.position.x > max.x) transform.Translate(Vector2.left * moveSpeed * 1.5f * Time.deltaTime);
         }
         else {
             animator.enabled = true;
