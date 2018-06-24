@@ -140,8 +140,13 @@ public class GameController : MonoBehaviour {
         }
 
         //選択したモブは死ぬ
-        ManagingPsychopath.MobKilling(clickPos, killingMob);
-
+        if (ManagingPsychopath) {
+            ManagingPsychopath.MobKilling(clickPos, killingMob);
+        }
+        else
+        {   //err
+            Debug.Log("ERROR : GameControllerにPsychopathが設定されていない。");
+        }
         int aliveNum = GetAlivingMobs();
 
         if(aliveNum == 0)

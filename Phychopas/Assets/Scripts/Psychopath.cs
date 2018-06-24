@@ -29,10 +29,12 @@ public class Psychopath : MonoBehaviour {
     private MobBase KillingMob = null;
     [SerializeField] private bool IsFirstTextPlay = false;
     [SerializeField] private SpriteRenderer FullScreenSprite = null;
+    [SerializeField] private BoxCollider2D FullScreenCol = null;
     [SerializeField] private GameController GameCtrler;
     [SerializeField] private float MoveSpeed = 20.0f;
     [SerializeField] private float MoveSpeedForMedic = 5.0f;
     [SerializeField] private Sprite DefaultSprite = null;
+    [SerializeField] private Sprite KillRunning = null;
     [SerializeField] private Sprite[] FirstTextAnime = new Sprite[8];
     [SerializeField] private Sprite[] WorkingAnime = new Sprite[1];
     [SerializeField] private Sprite[] KillingAnimes  = new Sprite[4];
@@ -40,8 +42,13 @@ public class Psychopath : MonoBehaviour {
     // Use this for initialization
     void Start() {
         mySprite = this.GetComponent<SpriteRenderer>();
+
         defaultPos = this.transform.position;
         defaultFlipX = mySprite.flipX;
+        if(GameCtrler)
+        {
+            GameCtrler.AddPsychopath(this);
+        }
         if (IsFirstTextPlay)
         {
             animeState = Animation.FirstPlayText;
@@ -57,19 +64,22 @@ public class Psychopath : MonoBehaviour {
     //アニメーションのコマを切り替える
     void RunAnimation()
     {
+        int animeNum = 0;
         animeTimer += Time.deltaTime;
         mySprite.flipX = defaultFlipX;
         switch (animeState)
         {
             case Animation.AnimeBreak:
                 animeTimer = 0.0f;
-                animeState = Animation.BackToDefalt;
+                animeState = Animation.AnimeBreak;
                 animeFrame = 0;
                 mySprite.sprite = DefaultSprite;
+                mySprite.flipX = defaultFlipX;
                 break;
             case Animation.KillAnime:
                 if (animeTimer > 0.16f)
                 {
+                    FullScreenCol.enabled = true;
                     animeTimer = 0.0f;
                     ++animeFrame;
                     if (animeFrame > KillingAnimes.Length)
@@ -90,6 +100,7 @@ public class Psychopath : MonoBehaviour {
                 }
                 break;
             case Animation.TargetToMove:
+                mySprite.sprite = KillRunning;
                 this.transform.position = Vector2.Lerp(this.transform.position, targetPos, Time.deltaTime * MoveSpeed);
 
                 if ((int)(transform.position.x) == (int)(targetPos.x)
@@ -101,6 +112,10 @@ public class Psychopath : MonoBehaviour {
                 }
                 break;
             case Animation.TargetToMoveForMedic:
+                animeNum = (int)(animeTimer * 8) % (WorkingAnime.Length);
+                animeNum = Mathf.Clamp(animeNum, 0, WorkingAnime.Length - 1);
+                mySprite.sprite = WorkingAnime[animeNum];
+
                 this.transform.position = Vector2.Lerp(this.transform.position, targetPos, Time.deltaTime * MoveSpeedForMedic);
 
                 if ((int)(transform.position.x) == (int)(targetPos.x)
@@ -112,7 +127,11 @@ public class Psychopath : MonoBehaviour {
                 }
                 break;
             case Animation.BackToDefalt:
+                animeNum = (int)(animeTimer * 8) % (WorkingAnime.Length);
+                animeNum = Mathf.Clamp(animeNum,0,WorkingAnime.Length - 1);
+                mySprite.sprite = WorkingAnime[animeNum];
                 mySprite.flipX = !defaultFlipX;
+
                 this.transform.position = Vector2.Lerp(this.transform.position, defaultPos, Time.deltaTime * MoveSpeedForMedic);
 
                 if ((int)(transform.position.x) == (int)(defaultPos.x)
@@ -120,7 +139,7 @@ public class Psychopath : MonoBehaviour {
                 {
                     animeTimer = 0.0f;
                     animeFrame = 0;
-                    animeState = Animation.BackToDefalt;
+                    animeState = Animation.AnimeBreak;
                 }
                 break;
             case Animation.GiveMedic:
@@ -143,6 +162,7 @@ public class Psychopath : MonoBehaviour {
             case Animation.FirstPlayText:
                 if (animeTimer > 0.16f)
                 {
+                    FullScreenCol.enabled = true;
                     animeTimer = 0.0f;
                     ++animeFrame;
                     if (animeFrame > FirstTextAnime.Length)
@@ -181,6 +201,8 @@ public class Psychopath : MonoBehaviour {
         {
             animeState = Animation.BackToDefalt;
             FullScreenSprite.sprite = null;
+            FullScreenCol.enabled = false;
+            GameCtrler.ClearControl();
         }
     }
     
