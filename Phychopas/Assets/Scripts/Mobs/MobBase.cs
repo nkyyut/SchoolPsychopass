@@ -14,13 +14,25 @@ public class MobBase : MonoBehaviour {
     public Dir nowDir = Dir.Front;                  // 現在向いている方向
     public float changeDirTiming;                   // 画像を変えるタイミング
     public float changeDirTimer;                    // 画像を変えるタイマー
+    [SerializeField] private GameController GameCtrler = null;
+    private bool alivingFlg = true;                         // このキャラが生存しているかどうか
+
+
+    // Use this for initialization
+    void Start() {
+        if(GameCtrler)
+        {   //自身を管理に含める
+            GameCtrler.AddMob(this);
+        }
+    }
+
 
     /***
      * @param pos マウスのクリックされたポジション
      * @param mb  クリックされたモブキャラの親クラス
      * @return このキャラクターを殺しても良いか
      */
-    public bool KillChack(Vector2 pos, MobBase mb) {
+    public bool KillCheck(Vector2 pos, MobBase mb) {
         // 正面なら殺せないゲームオーバー
         if (nowDir == Dir.Front) return true;
         // 左を向いている　かつ　自分より左にいる時　殺せないゲームオーバー
@@ -36,7 +48,7 @@ public class MobBase : MonoBehaviour {
      * とりあえずこのモブを消すだけの処理
      */
     public void Killed() {
-        
+        alivingFlg = false;
     }
 
     /***
@@ -50,5 +62,15 @@ public class MobBase : MonoBehaviour {
         nowDir = (transform.position.x > pos.x) ? Dir.Left : Dir.Right;
         // 自身のオブジェクトの方角を変える
         this.gameObject.GetComponent<SpriteRenderer>().sprite = dirs[(int)nowDir];
+    }
+
+    /***
+     * モブが生きていたらtrueを返す。
+     * 逆に死んで(ひざが切られて)いたらfalseを返す。
+     * (勝手に追加しました、さいとう)
+     */
+     public bool IsAliving() 
+     {
+        return alivingFlg;
     }
 }

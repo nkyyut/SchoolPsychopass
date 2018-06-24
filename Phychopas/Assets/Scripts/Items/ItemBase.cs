@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    [SerializeField] private GameController GameCtrler = null;
+
+    // Use this for initialization
+    void Start () {
+		if(GameCtrler)
+        {
+            GameCtrler.AddItem(this);
+        }
 	}
 	
 	// Update is called once per frame

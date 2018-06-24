@@ -6,7 +6,7 @@ using UnityEditor;
 using System;
 
 public class MobNormal : MobBase {
-    
+
     private Vector2 min;            // カメラの左下の座標
     private Vector2 max;            // カメラの右上の座標
     private System.Random r;        // ランダム用の変数
@@ -20,7 +20,7 @@ public class MobNormal : MobBase {
         moveLR = r.Next(2) == 0 ? true : false;
         min = Camera.main.ViewportToWorldPoint(Vector2.zero);
         max = Camera.main.ViewportToWorldPoint(Vector2.one);
-        width  = GetComponent<SpriteRenderer>().bounds.size.x;
+        width = GetComponent<SpriteRenderer>().bounds.size.x;
         height = GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
@@ -38,7 +38,7 @@ public class MobNormal : MobBase {
     void ChangeDirection() {
         int temp = r.Next(4);
         // 絶対に被らないようにする
-        while ( (int)nowDir == temp ) { temp = r.Next(4); }
+        while ((int)nowDir == temp) { temp = r.Next(4); }
         // 求めたランダムからEnumへ
         nowDir = (Dir)Enum.ToObject(typeof(Dir), temp);
         // 向きを変更
@@ -50,9 +50,20 @@ public class MobNormal : MobBase {
     /***
      * キャラクターを移動させる
      */
-    void Move () {
+    void Move() {
         //if ( nowDir == Dir.Left ) {
-            
+
         //}
+    }
+
+
+    void ReceiveItemEvent(GameController.ItemEvent Event, ItemBase Item, Vector2 Pos) {
+        switch (Event) {
+            case GameController.ItemEvent.Sound:
+                
+                break;
+            default:
+                break;
+        }
     }
 }
