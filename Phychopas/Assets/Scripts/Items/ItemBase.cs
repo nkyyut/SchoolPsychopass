@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBase : MonoBehaviour
-{
+public class ItemBase : MonoBehaviour {
+
+    public AudioClip clip;
+
     [SerializeField] private GameObject target;     // アイテムを取得する時のゴール
     [SerializeField] private float moveTime;        // アイテムを取得する時の速度
     [SerializeField] private float spd = 10f;       // なげる球の速さ
@@ -13,6 +15,7 @@ public class ItemBase : MonoBehaviour
     private Vector2 targetPos;                      // 目標のposition
     private float timer;                            // 時間を計るタイマー
     private float lastPosX;                         // 消える直前のX座標
+    private AudioSource audio;
 
     [SerializeField] private GameController GameCtrler = null;
 
@@ -34,13 +37,17 @@ public class ItemBase : MonoBehaviour
         {
             GameCtrler.AddItem(this);
         }
+        audio = GameObject.Find("AudioController").GetComponent<AudioSource>();
+        Debug.Log(audio);
 
     }
-	
-	// フレーム毎に呼ばれるよ！
-	void Update () {
+
+    // フレーム毎に呼ばれるよ！
+    void Update()
+    {
         // 1なので取得している最中
-        if (moveFlg == 1) {
+        if (moveFlg == 1)
+        {
             // タイマーの値を増やす
             timer += Time.deltaTime;
             // targetまでちょっとずつアイテムを移動させる
@@ -50,7 +57,8 @@ public class ItemBase : MonoBehaviour
         }
 
         // 投げられる状態にある　かつ　画面をタッチしたとき
-        if (moveFlg == 2 && Input.GetMouseButtonDown(0)) {
+        if (moveFlg == 2 && Input.GetMouseButtonDown(0))
+        {
             // 二度目のクリックは受け付けない為に増やす
             moveFlg++;
             // マウスのクリック位置を取得
@@ -68,11 +76,14 @@ public class ItemBase : MonoBehaviour
         }
 
         // 投げてる状態！
-        if ( throwFlg ) {
+        if (throwFlg)
+        {
             // ひたすらにクリックされた方向へ移動
             transform.Translate(Vector2.right * spd * Time.deltaTime);
             // 画面から消えたらデストロイする
-            if (!GetComponent<SpriteRenderer>().isVisible) {
+            if (!GetComponent<SpriteRenderer>().isVisible)
+            {
+                audio.PlayOneShot(this.clip);
                 Debug.Log("Destory!!!");
                 // 削除する前に消える直前のX座標を保存する
                 lastPosX = transform.position.x;
@@ -80,5 +91,6 @@ public class ItemBase : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-	}
+    }
 }
+
