@@ -28,9 +28,9 @@ public class MobNormal : MobBase {
         width = GetComponent<SpriteRenderer>().bounds.size.x;
         height = GetComponent<SpriteRenderer>().bounds.size.y;
         // 初期ポジションを設定
-        transform.position = new Vector3(transform.position.x, min.y + height / 2);
         min = Camera.main.ViewportToWorldPoint(Vector2.zero);
         max = Camera.main.ViewportToWorldPoint(Vector2.one);
+        transform.position = new Vector3(transform.position.x, min.y + height / 2);
         // アニメーターを取得
         animator = GetComponent(typeof(Animator)) as Animator;
         rend = GetComponent<SpriteRenderer>();
