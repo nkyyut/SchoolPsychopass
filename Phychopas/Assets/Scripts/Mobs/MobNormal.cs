@@ -21,7 +21,8 @@ public class MobNormal : MobBase {
     private bool deleteObjectFlg;
     private float alpha;
     private SpriteRenderer rend;
-
+    public Sprite deadImage;
+    private Color color;
 
     void Start() {
         // ランダムインスタンスを生成
@@ -64,10 +65,11 @@ public class MobNormal : MobBase {
             if (!base.isPushed) Move();
         } else if (deleteObjectFlg) {
             alpha = alpha + Time.deltaTime * 0.5f;
-            rend.material.color = new Color(0f, 0f, 0f, alpha);
+            rend.material.color = new Color(color.r, color.g, color.b, alpha);
             if (alpha > 1) Destroy(this.gameObject);
         } else {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = base.deadImage;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = deadImage;
+            color = this.gameObject.GetComponent<SpriteRenderer>().material.color;
             Invoke("deleteObject", 3);
         }
 

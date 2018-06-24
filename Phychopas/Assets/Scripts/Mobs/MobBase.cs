@@ -16,7 +16,6 @@ public class MobBase : MonoBehaviour {
     public float changeDirTimer;                    // 画像を変えるタイマー
     [SerializeField] private GameController GameCtrler = null;
     public bool alivingFlg = true;                         // このキャラが生存しているかどうか
-    public Sprite deadImage;
     public bool isPushed;
 
     //public MobBase () {
