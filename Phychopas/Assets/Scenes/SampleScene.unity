@@ -153,7 +153,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.5
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1094550530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa2756b02b1bed40a9264905999412d, type: 3}
+  m_Script: {fileID: 11500000, guid: 12149e5836b6a624587d7ac6e122e1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dirs:
@@ -220,6 +220,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2fd8b27a7f08645739c05f045d90804a, type: 3}
   - {fileID: 21300000, guid: fb579c76c516040939a8ce2896abadf0, type: 3}
   nowDir: 0
+  changeDirTiming: 3
+  changeDirTimer: 0
 --- !u!212 &1094550532
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -255,7 +257,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 4fb1a5596ddeb44dda035eaf6cff07ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
