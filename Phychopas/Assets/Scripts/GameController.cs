@@ -26,7 +26,8 @@ public class GameController : MonoBehaviour {
     public ItemBase[] ManagingItems = new ItemBase[256];
 
     private CursorManager CursorMng;    //カーソルコントロール用
-    private ControlState ctrlState;     //操作制御用
+    private ControlState ctrlState = ControlState.NormalControl;     //操作制御用
+    private Psychopath ManagingPsychopath = null;  //管理中のサイコパス
 
     // Use this for initialization
     void Start()
@@ -84,6 +85,7 @@ public class GameController : MonoBehaviour {
         }
         for (int i = 0; i < ManagingMobs.Length; ++i)
         {   //管理に追加できそうなインデックスを探す
+
             if (ManagingMobs[i] == null)
             {   //追加処理
                 ManagingItems[i] = newItem;
@@ -94,6 +96,28 @@ public class GameController : MonoBehaviour {
         //管理の追加に失敗したのでエラー
         return false;
     }
+
+    //概要 ： アイテムを管理に含める
+    //引数 ： IetmBase newItem  管理に追加する新しいアイテム
+    //返値 ： bool 成否    TRUE:成功/FALSE:失敗
+    //詳細 ： GameControllerにアイテムを追加します。
+    //        追加されたアイテムは「ItemEvent」を受け取ることができます。
+    //        返値にFALSEが返った場合は既に管理に含まれるか
+    //        管理の上限に達している場合です。
+    public bool AddPsychopath(Psychopath newPsycho)
+    {
+        if (ManagingPsychopath)
+        {   //err
+            return false;
+        }
+        ManagingPsychopath = newPsycho;
+
+        return true;
+    }
+
+
+
+
     //概要 ： モブのキル判定(ひざ切り)
     //引数 ： Vectro2 clickPos    クリックされた座標
     //        MobBase killingMob  キル判定するモブ
@@ -108,7 +132,7 @@ public class GameController : MonoBehaviour {
                 continue;
             }
             //モブのキル判定
-            if(mobs.KillChack(clickPos, killingMob))
+            if(mobs.KillCheck(clickPos, killingMob))
             {   //殺すの失敗
                 GameOver();
                 return false;
@@ -130,7 +154,6 @@ public class GameController : MonoBehaviour {
     //概要 : 生存しているモブの数を取得します。
     //引数 : なし
     //返値 : int 生きているモブの数
-    //メモ : 未完の関数
     public int GetAlivingMobs()
     {
         int aliveNum = 0;
