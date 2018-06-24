@@ -57,11 +57,16 @@ public class MobNormal : MobBase {
             changeDirTimer += Time.deltaTime;
             if (!base.isPushed) Move();
         } else if (deleteObjectFlg) {
-            if (rend.material.color.a > 0) {
+            Debug.Log("Deading");
+            if (rend.material.color.a > 0)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = deadImage;
                 alpha = rend.material.color.a - 0.5f * Time.deltaTime;
                 rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, alpha);
             } else Destroy(this.gameObject);
-        } else {
+        } else
+        {
+            Debug.Log("Deading2");
             this.gameObject.GetComponent<SpriteRenderer>().sprite = deadImage;
             color = this.gameObject.GetComponent<SpriteRenderer>().material.color;
             Invoke("deleteObject", 3);
@@ -77,9 +82,9 @@ public class MobNormal : MobBase {
      * キャラクターの向きを変えるメソッド
      */
     void ChangeDirection() {
-        int temp = r.Next(4);
+        int temp = UnityEngine.Random.Range(0, 4);
         // 絶対に被らないようにする
-        while ((int)nowDir == temp) { temp = r.Next(4); }
+        while ((int)nowDir == temp) { temp = UnityEngine.Random.Range(0, 4); }
         // 求めたランダムからEnumへ
         nowDir = (Dir)Enum.ToObject(typeof(Dir), temp);
         // 向きを変更
