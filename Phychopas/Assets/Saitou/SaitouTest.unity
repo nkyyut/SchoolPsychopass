@@ -679,7 +679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237803224
 GameObject:
@@ -727,12 +727,12 @@ MonoBehaviour:
   WorkingAnime:
   - {fileID: 0}
   KillingAnimes:
-  - {fileID: 21300000, guid: 0d2fff6295e024085b9a7e1dda75b4a1, type: 3}
-  - {fileID: 21300000, guid: e3c52e21ef8b6424299a394f673abd87, type: 3}
-  - {fileID: 21300000, guid: e619554fab05943908f4940d21774d10, type: 3}
-  - {fileID: 21300000, guid: f18f1639108db42c3a23252f32ee0e79, type: 3}
-  - {fileID: 21300000, guid: c9d914a5013694c08beca8adb3cdc416, type: 3}
-  - {fileID: 21300000, guid: bd49815c81e134a1885a90cf767130d4, type: 3}
+  - {fileID: 21300000, guid: 28d7e6ae8515b0343ab75bfd61a4f541, type: 3}
+  - {fileID: 21300000, guid: 207e7103cc8cee043aac6d4f82184706, type: 3}
+  - {fileID: 21300000, guid: 66dfd3f3bf782da41afab583ee6a9cab, type: 3}
+  - {fileID: 21300000, guid: ac6f7a46e7b547943aa4e5930073f520, type: 3}
+  - {fileID: 21300000, guid: 718265e3104cf7643aad224bfcc7957b, type: 3}
+  - {fileID: 21300000, guid: b4d0568a1f2e6fa4187d5db5688d42a7, type: 3}
   MedicAnimes:
   - {fileID: 21300000, guid: f562f590e22844a3995f7b6f58aa19f6, type: 3}
   - {fileID: 21300000, guid: 00f1ca8d0dc0540fc9697283a68522fb, type: 3}
@@ -792,7 +792,7 @@ Transform:
   m_LocalScale: {x: 1.2354437, y: 1.2354428, z: 1.2354428}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &361548076
 GameObject:
@@ -854,7 +854,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1028551766
 GameObject:
@@ -930,7 +930,7 @@ Transform:
   m_LocalScale: {x: 1.5941168, y: 1.4014206, z: 1.4014206}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1028551769
 MonoBehaviour:
@@ -985,8 +985,55 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 13, y: 7.5}
   m_EdgeRadius: 0
+--- !u!1001 &1055173862
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4436133671469734, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.0715094
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436133671469734, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.3701191
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436133671469734, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436133671469734, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436133671469734, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436133671469734, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436133671469734, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436133671469734, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114220875680040252, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b,
+        type: 2}
+      propertyPath: GameCtrler
+      value: 
+      objectReference: {fileID: 165392241}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8b54bf220ebe6fa4a86d5f5ecd9f889b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1638367458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,5 +1171,5 @@ Transform:
   m_LocalScale: {x: 1.2354437, y: 1.2354428, z: 1.2354428}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
