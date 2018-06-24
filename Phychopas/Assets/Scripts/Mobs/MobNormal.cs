@@ -68,7 +68,7 @@ public class MobNormal : MobBase {
             if (alpha > 1) Destroy(this.gameObject);
         } else {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = base.deadImage;
-            Invoke("delteObject", 3);
+            Invoke("deleteObject", 3);
         }
 
     }
