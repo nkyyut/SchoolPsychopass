@@ -87,6 +87,7 @@ public class MobBase : MonoBehaviour {
     //クリックされた時のイベント
     public void ClickDown()
     {
+        Debug.Log("Mobがクリックされた。");
         if(GameCtrler.GetCtrlState() == GameController.ControlState.NormalControl)
         {
             GameCtrler.KillCheckMob(this.transform.position,this);
