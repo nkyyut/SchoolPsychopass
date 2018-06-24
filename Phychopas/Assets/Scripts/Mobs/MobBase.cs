@@ -74,7 +74,7 @@ public class MobBase : MonoBehaviour {
         return alivingFlg;
     }
 
-    void ReceiveItemEvent(GameController.ItemEvent Event, ItemBase Item, Vector2 Pos) {
+    public void ReceiveItemEvent(GameController.ItemEvent Event, ItemBase Item, Vector2 Pos) {
         switch (Event) {
             case GameController.ItemEvent.Sound:
                 if (transform.position.x > Pos.x) nowDir = Dir.Left;
@@ -82,6 +82,14 @@ public class MobBase : MonoBehaviour {
                 break;
             default:
                 break;
+        }
+    }
+    //クリックされた時のイベント
+    public void ClickDown()
+    {
+        if(GameCtrler.GetCtrlState() == GameController.ControlState.NormalControl)
+        {
+            GameCtrler.KillCheckMob(this.transform.position,this);
         }
     }
 }
